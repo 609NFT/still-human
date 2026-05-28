@@ -1,7 +1,7 @@
 # still-human — Agent
 
 App: **still-human** at https://still-human.vibekit.bot
-Repo: template/blank | Port: 4041 | Container: vk-still-human
+Repo: 609NFT/still-human | Port: 4041 | Container: vk-still-human
 
 ## NEVER (highest priority — these break the product)
 
