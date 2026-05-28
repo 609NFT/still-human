@@ -350,6 +350,177 @@
       font-family: system-ui, sans-serif;
     }
 
+    /* EQUATION SECTION */
+    .equation-section {
+      padding: 6rem 2rem;
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .equation-hero {
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 400;
+      color: var(--text);
+      margin: 2rem 0 0.5rem;
+      font-family: 'Georgia', serif;
+      letter-spacing: 0.02em;
+    }
+    .equation-display {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem 1rem;
+      margin: 2rem 0 3rem;
+      font-family: 'Georgia', serif;
+    }
+    .eq-term {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .eq-value {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1;
+      transition: color 0.3s;
+    }
+    .eq-label {
+      font-family: system-ui, sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .eq-op {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--muted);
+      margin-top: -0.5rem;
+      user-select: none;
+    }
+    .eq-result-block {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      padding: 1rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+    }
+    .eq-result-value {
+      font-size: clamp(2.2rem, 7vw, 4rem);
+      color: var(--accent);
+      font-weight: 400;
+      line-height: 1;
+    }
+    .eq-result-label {
+      font-family: system-ui, sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.7;
+    }
+    .sliders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .slider-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem 1.5rem 1.25rem;
+      text-align: left;
+      transition: border-color 0.2s;
+    }
+    .slider-card:hover { border-color: var(--accent); }
+    .slider-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.6rem;
+    }
+    .slider-name {
+      font-family: system-ui, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .slider-number {
+      font-size: 1.4rem;
+      font-family: 'Georgia', serif;
+      color: var(--accent);
+      min-width: 2ch;
+      text-align: right;
+    }
+    .slider-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 3px;
+      background: var(--border);
+      outline: none;
+      cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+    input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.25); }
+    input[type=range]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      cursor: pointer;
+    }
+    .eq-insight {
+      margin-top: 2.5rem;
+      padding: 1.25rem 1.75rem;
+      border-left: 2px solid var(--accent);
+      text-align: left;
+      background: var(--surface);
+    }
+    .eq-insight p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.65;
+    }
+    .eq-insight strong { color: var(--text); font-style: normal; font-weight: 400; }
+    .eq-reset {
+      margin-top: 2rem;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.5rem 1.4rem;
+      font-family: system-ui, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .eq-reset:hover { border-color: var(--accent); color: var(--accent); }
+
     @media (max-width: 600px) {
       .nav-links { display: none; }
       .hero-title { font-size: 2.8rem; }
@@ -392,6 +563,70 @@
     <p style="font-style:italic; font-size:0.92rem;">
       The views expressed are those of the participants and do not represent any single institution.
     </p>
+  </section>
+
+  <!-- EQUATION SECTION -->
+  <section class="equation-section" id="equation">
+    <span class="section-label">The Equation</span>
+    <h2 class="equation-hero">Beliefs &times; Values &times; Goal-Setting<br>= Velocity &times; Capacity</h2>
+    <p style="color:var(--muted); font-size:0.97rem; max-width:56ch; margin:0 auto 2.5rem; font-style:italic;">
+      Your internal operating system determines how fast you move and how much you can hold. Adjust the levers below to see how shifts in each dimension affect your output.
+    </p>
+
+    <div class="equation-display">
+      <div class="eq-term">
+        <span class="eq-value" id="disp-beliefs" style="color:#c8a96e">5</span>
+        <span class="eq-label">Beliefs</span>
+      </div>
+      <span class="eq-op">&times;</span>
+      <div class="eq-term">
+        <span class="eq-value" id="disp-values" style="color:#a9c8c0">5</span>
+        <span class="eq-label">Values</span>
+      </div>
+      <span class="eq-op">&times;</span>
+      <div class="eq-term">
+        <span class="eq-value" id="disp-goals" style="color:#c0a9c8">5</span>
+        <span class="eq-label">Goal-Setting</span>
+      </div>
+      <span class="eq-op">=</span>
+      <div class="eq-result-block">
+        <span class="eq-result-value" id="disp-result">125</span>
+        <span class="eq-result-label">Velocity &times; Capacity</span>
+      </div>
+    </div>
+
+    <div class="sliders-grid">
+      <div class="slider-card">
+        <div class="slider-card-header">
+          <span class="slider-name" style="color:#c8a96e">Beliefs</span>
+          <span class="slider-number" id="val-beliefs">5</span>
+        </div>
+        <p class="slider-sub">The internal narratives shaping what you think is possible for yourself and others.</p>
+        <input type="range" id="slider-beliefs" min="1" max="10" value="5" step="1">
+      </div>
+      <div class="slider-card">
+        <div class="slider-card-header">
+          <span class="slider-name" style="color:#a9c8c0">Values</span>
+          <span class="slider-number" id="val-values">5</span>
+        </div>
+        <p class="slider-sub">The principles that act as your compass — deciding what to pursue and what to pass on.</p>
+        <input type="range" id="slider-values" min="1" max="10" value="5" step="1">
+      </div>
+      <div class="slider-card">
+        <div class="slider-card-header">
+          <span class="slider-name" style="color:#c0a9c8">Goal-Setting</span>
+          <span class="slider-number" id="val-goals">5</span>
+        </div>
+        <p class="slider-sub">The clarity and specificity of where you're headed — your aim gives direction to your energy.</p>
+        <input type="range" id="slider-goals" min="1" max="10" value="5" step="1">
+      </div>
+    </div>
+
+    <div class="eq-insight">
+      <p id="eq-insight-text">You're operating at <strong id="ins-score">125 / 1000</strong>. <span id="ins-message">A balanced foundation — real progress happens when you deepen at least one dimension intentionally.</span></p>
+    </div>
+
+    <button class="eq-reset" onclick="resetSliders()">Reset to Default</button>
   </section>
 
   <!-- THEMES -->
@@ -503,5 +738,72 @@
     </p>
   </footer>
 
+  <script>
+    const sliders = [
+      { id: 'slider-beliefs', dispId: 'disp-beliefs', valId: 'val-beliefs' },
+      { id: 'slider-values',  dispId: 'disp-values',  valId: 'val-values'  },
+      { id: 'slider-goals',   dispId: 'disp-goals',   valId: 'val-goals'   },
+    ];
+
+    function getValues() {
+      return sliders.map(s => parseInt(document.getElementById(s.id).value, 10));
+    }
+
+    function getInsight(b, v, g, result) {
+      const max = 1000;
+      const pct = result / max;
+      const low = [b,v,g].filter(x => x <= 3);
+      const high = [b,v,g].filter(x => x >= 8);
+      const names = ['Beliefs','Values','Goal-Setting'];
+      const lowNames = [b<=3?'Beliefs':null, v<=3?'Values':null, g<=3?'Goal-Setting':null].filter(Boolean);
+      const highNames = [b>=8?'Beliefs':null, v>=8?'Values':null, g>=8?'Goal-Setting':null].filter(Boolean);
+
+      if (result === 1000) return 'Maximum output. Every dimension is fully aligned — this is rare and deliberate. The question is: what are you building with it?';
+      if (result >= 700) return `Exceptional alignment. ${highNames.join(' and ')} ${highNames.length>1?'are':'is'} doing serious work. Channel it intentionally.`;
+      if (result >= 400) return 'Strong foundation. You have real momentum — tightening even one dimension will compound results significantly.';
+      if (result >= 200) return 'Moderate output. A balanced foundation — real progress happens when you deepen at least one dimension intentionally.';
+      if (lowNames.length > 0) return `${lowNames.join(' and ')} ${lowNames.length>1?'are':'is'} acting as a bottleneck. Even small shifts here multiply across the whole equation.`;
+      return 'Low output. The inputs are weak across the board — not a failure, a starting point. Which one do you move first?';
+    }
+
+    function update() {
+      const [b, v, g] = getValues();
+      const result = b * v * g;
+
+      sliders.forEach((s, i) => {
+        const val = [b,v,g][i];
+        document.getElementById(s.dispId).textContent = val;
+        document.getElementById(s.valId).textContent = val;
+      });
+
+      document.getElementById('disp-result').textContent = result;
+      document.getElementById('ins-score').textContent = result + ' / 1000';
+      document.getElementById('ins-message').textContent = getInsight(b, v, g, result);
+
+      // color result by output level
+      const el = document.getElementById('disp-result');
+      const rb = document.querySelector('.eq-result-block');
+      if (result >= 700) {
+        el.style.color = '#6ecf8e'; rb.style.borderColor = '#6ecf8e';
+      } else if (result >= 400) {
+        el.style.color = '#c8a96e'; rb.style.borderColor = '#c8a96e';
+      } else if (result >= 200) {
+        el.style.color = '#c8a96e'; rb.style.borderColor = '#c8a96e';
+      } else {
+        el.style.color = '#cf6e6e'; rb.style.borderColor = '#cf6e6e';
+      }
+    }
+
+    function resetSliders() {
+      sliders.forEach(s => { document.getElementById(s.id).value = 5; });
+      update();
+    }
+
+    sliders.forEach(s => {
+      document.getElementById(s.id).addEventListener('input', update);
+    });
+
+    update();
+  </script>
 </body>
 </html>
