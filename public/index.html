@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Still Human — Conversations About Technology & People</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d10;
+      --surface: #16161c;
+      --border: #2a2a35;
+      --accent: #c8a96e;
+      --accent-soft: #e8c98e;
+      --text: #e8e6e0;
+      --muted: #888790;
+      --tag-bg: #1e1e28;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,13,16,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-size: 1.05rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      font-family: 'Georgia', serif;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-family: system-ui, sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,169,110,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: system-ui, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.12;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      max-width: 14ch;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent-soft);
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--muted);
+      max-width: 52ch;
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+    .hero-cta {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+      font-family: system-ui, sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+    .hero-cta:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    /* ABOUT */
+    .about {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    .section-label {
+      font-family: system-ui, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .about p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+    .about p strong { color: var(--text); font-weight: 400; }
+    .about-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin: 3rem auto;
+      opacity: 0.5;
+    }
+
+    /* THEMES */
+    .themes {
+      background: var(--surface);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .themes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .theme-tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.5rem 1.1rem;
+      font-family: system-ui, sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* EPISODES */
+    .episodes {
+      padding: 6rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .episodes-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .episodes-header h2 {
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--text);
+    }
+    .episode-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      border: 1px solid var(--border);
+      margin-bottom: 3rem;
+      transition: border-color 0.2s;
+    }
+    .episode-card:hover { border-color: var(--accent); }
+    .episode-thumb {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      background: #111;
+      overflow: hidden;
+    }
+    .episode-thumb iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .episode-body {
+      padding: 2rem;
+    }
+    .episode-number {
+      font-family: system-ui, sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .episode-title {
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 1rem;
+      line-height: 1.35;
+    }
+    .episode-desc {
+      font-size: 0.97rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .episode-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .episode-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-family: system-ui, sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .episode-link:hover { border-color: var(--accent); }
+
+    /* HOSTS */
+    .hosts {
+      background: var(--surface);
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    .hosts-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      justify-content: center;
+      margin-top: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .host-card {
+      flex: 1;
+      min-width: 220px;
+      max-width: 280px;
+      border: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+    }
+    .host-initial {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--tag-bg);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin: 0 auto 1.25rem;
+      font-family: Georgia, serif;
+    }
+    .host-name {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+    .host-role {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-family: system-ui, sans-serif;
+      margin-bottom: 1rem;
+    }
+    .host-link {
+      color: var(--accent);
+      font-size: 0.78rem;
+      text-decoration: none;
+      font-family: system-ui, sans-serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .host-link:hover { border-color: var(--accent); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: gap;
+      gap: 1rem;
+    }
+    .footer-brand {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-family: system-ui, sans-serif;
+    }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-family: system-ui, sans-serif;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-disclaimer {
+      width: 100%;
+      font-size: 0.75rem;
+      color: #555;
+      font-family: system-ui, sans-serif;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero-title { font-size: 2.8rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">Still Human</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#episodes">Episodes</a></li>
+      <li><a href="#hosts">Hosts</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">A Conversation Series</p>
+    <h1 class="hero-title">Technology starts with <em>people.</em></h1>
+    <p class="hero-sub">Thoughtful conversations about how AI is reshaping learning, work, leadership, and identity — and what remains distinctly human.</p>
+    <a href="#episodes" class="hero-cta">Watch Episodes</a>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <span class="section-label">About the Series</span>
+    <p>
+      <strong>Still Human</strong> is an independent conversation series grounded in a simple idea: technology starts with people.
+    </p>
+    <p>
+      This is not a show about tools or hype. It's a space for thoughtful conversations about how AI is reshaping learning, work, leadership, and identity — and what remains distinctly human as that change accelerates.
+    </p>
+    <p>
+      Each episode brings together educators, technologists, and industry leaders to reflect on what's changing, what's uncertain, and how we navigate it.
+    </p>
+    <div class="about-divider"></div>
+    <p style="font-style:italic; font-size:0.92rem;">
+      The views expressed are those of the participants and do not represent any single institution.
+    </p>
+  </section>
+
+  <!-- THEMES -->
+  <section class="themes">
+    <span class="section-label">Themes</span>
+    <p style="color:var(--muted); font-size:0.97rem;">What we keep coming back to.</p>
+    <div class="themes-grid">
+      <span class="theme-tag">Agency</span>
+      <span class="theme-tag">Intention</span>
+      <span class="theme-tag">Judgment</span>
+      <span class="theme-tag">Connection</span>
+      <span class="theme-tag">Leadership</span>
+      <span class="theme-tag">Learning</span>
+      <span class="theme-tag">Identity</span>
+      <span class="theme-tag">Uncertainty</span>
+      <span class="theme-tag">Adaptability</span>
+      <span class="theme-tag">Ethics</span>
+    </div>
+  </section>
+
+  <!-- EPISODES -->
+  <section class="episodes" id="episodes">
+    <div class="episodes-header">
+      <span class="section-label">Episodes</span>
+      <h2>The Conversations</h2>
+    </div>
+
+    <!-- EP 1 -->
+    <div class="episode-card">
+      <div class="episode-thumb">
+        <iframe
+          src="https://www.youtube.com/embed/l2gDCCieOPk"
+          title="Episode 1: What Does It Mean to Be Still Human?"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="episode-body">
+        <span class="episode-number">Episode 01</span>
+        <h3 class="episode-title">What Does It Mean to Be Still Human?</h3>
+        <p class="episode-desc">
+          The series opener. A wide-ranging conversation about technology, people, and the accelerating impact of AI on learning, work, and identity. The most important work in the age of AI is not technical obedience — it's cultivating self-understanding, ethical awareness, and the capacity to steer technology with purpose.
+        </p>
+        <div class="episode-links">
+          <a href="https://bit.ly/3ZYWKsY" target="_blank" rel="noopener" class="episode-link">→ Episode Notes</a>
+          <a href="https://bit.ly/4qhtGaX" target="_blank" rel="noopener" class="episode-link">→ Slide Deck</a>
+          <a href="https://youtu.be/l2gDCCieOPk" target="_blank" rel="noopener" class="episode-link">→ Watch on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- EP 2 -->
+    <div class="episode-card">
+      <div class="episode-thumb">
+        <iframe
+          src="https://www.youtube.com/embed/aUiAyzLxB2w"
+          title="Episode 2: Leading Through Uncertainty as AI Accelerates"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="episode-body">
+        <span class="episode-number">Episode 02</span>
+        <h3 class="episode-title">Leading Through Uncertainty as AI Accelerates</h3>
+        <p class="episode-desc">
+          With Andy Deninger, CTO at IPS Group. Leadership becomes less about certainty and more about navigating complexity — asking better questions, embracing ambiguity, and creating environments where teams can learn, iterate, and evolve. Curiosity, humility, trust, and perspective are not diminished by AI. They're made more essential.
+        </p>
+        <div class="episode-links">
+          <a href="http://bit.ly/3OIfY4h" target="_blank" rel="noopener" class="episode-link">→ Episode Notes</a>
+          <a href="https://bit.ly/3ON4nRp" target="_blank" rel="noopener" class="episode-link">→ Slide Deck</a>
+          <a href="https://www.youtube.com/watch?v=aUiAyzLxB2w" target="_blank" rel="noopener" class="episode-link">→ Watch on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- HOSTS -->
+  <section class="hosts" id="hosts">
+    <span class="section-label">Hosts</span>
+    <h2 style="font-size:2rem; font-weight:400; color:var(--text); margin-bottom:0.5rem;">MiraCosta CSIT Faculty</h2>
+    <p style="color:var(--muted); font-size:0.97rem; font-style:italic;">The people behind the conversations.</p>
+    <div class="hosts-grid">
+      <div class="host-card">
+        <div class="host-initial">S</div>
+        <p class="host-name">Steve Isachsen</p>
+        <p class="host-role">CSIT Faculty, MiraCosta College</p>
+        <a href="https://sisachsen.wixsite.com/miracosta" target="_blank" rel="noopener" class="host-link">Website →</a>
+      </div>
+      <div class="host-card">
+        <div class="host-initial">R</div>
+        <p class="host-name">Rick White</p>
+        <p class="host-role">CSIT Faculty, MiraCosta College</p>
+        <a href="https://home.miracosta.edu/rwhite/#home" target="_blank" rel="noopener" class="host-link">Website →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand">Still Human · A Conversation Series</span>
+    <div class="footer-links">
+      <a href="https://www.youtube.com/@StillHumanStudio" target="_blank" rel="noopener">YouTube</a>
+      <a href="#episodes">Episodes</a>
+      <a href="#about">About</a>
+    </div>
+    <p class="footer-disclaimer">
+      The views expressed are those of the participants and do not represent any single institution.
+    </p>
+  </footer>
+
+</body>
+</html>

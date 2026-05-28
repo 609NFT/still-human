@@ -1,11 +1,11 @@
 # STATUS.md — Live Infrastructure (auto-updated)
-_Last updated: 2026-05-28T16:52:53.858Z_
+_Last updated: 2026-05-28T18:29:12.773Z_
 
 ## Container
 - **Name**: vk-still-human
-- **Status**: running
+- **Status**: exited
 - **Started**: 2026-05-28T16:52:25.600029279Z
-- **Resources**: 0.00% CPU | 22.9MiB / 512MiB | 3.5kB / 15.3kB net
+- **Resources**: 0.00% CPU | 0B / 0B | 0B / 0B net
 - **Memory Limit**: 512MB
 - **Port**: 4041
 
@@ -14,11 +14,11 @@ _Last updated: 2026-05-28T16:52:53.858Z_
 - **Subdomain**: still-human.vibekit.bot
 - **DB Status**: running
 - **Health Failures**: 0
-- **Last Healthy**: 2026-05-28T16:52:42.144+00:00
+- **Last Healthy**: 2026-05-28T18:28:27.632+00:00
 
 
 ## Host
-- **Disk**: 22G used / 30G total (73% full)
+- **Disk**: 22G used / 30G total (71% full)
 
 ## Recent Logs (last 10 lines)
 ```
@@ -26,6 +26,11 @@ _Last updated: 2026-05-28T16:52:53.858Z_
 > node server.js
 
 Placeholder ready on port 4041
+npm error path /app
+npm error command failed
+npm error signal SIGTERM
+npm error command sh -c node server.js
+npm error A complete log of this run can be found in: /home/appuser/.npm/_logs/2026-05-28T16_52_25_781Z-debug-0.log
 ```
 
 ## Recent Events
